@@ -1,0 +1,14 @@
+.container {
+    height: 32rem;
+    width: 29rem;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+}
+
+@media all and (max-width: 500px) {
+    .container {
+        height: 34rem;
+        width: 30rem;
+    }
+}

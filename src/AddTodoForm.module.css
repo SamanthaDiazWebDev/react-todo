@@ -1,0 +1,23 @@
+.addToDoForm {
+    height: 4rem; 
+    width: 29rem;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+}
+
+.button {
+    background: rgb(234, 231, 231); 
+    color: #000007;
+    border: 1px solid #030000; 
+    padding: 2px;
+    cursor: pointer;
+    font-size: 18px;
+      
+    transition: all 0.1s ease-in;
+}
+
+button:hover { 
+    background: #171212; 
+    color: #ffffff;
+}
