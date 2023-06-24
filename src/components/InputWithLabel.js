@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from  "prop-types";
 
 const InputWithLabel = ({
     id,
@@ -28,5 +29,13 @@ const InputWithLabel = ({
         </>
     );
 };
+
+InputWithLabel.propTypes = {
+    children: PropTypes.object,
+    value: PropTypes.string,
+    onInputChange: PropTypes.func,
+    id: PropTypes.string,
+    type: PropTypes.object,
+}
 
 export default InputWithLabel;

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
 
-const MainFile = () => {
+
+const TodoContainer = () => {
     const [todoList, setTodoList] = useState();
     const [isLoading, setIsLoading] = useState(true);
   
@@ -114,4 +115,4 @@ const MainFile = () => {
     );
 }
   
-export default MainFile;
+export default TodoContainer;
