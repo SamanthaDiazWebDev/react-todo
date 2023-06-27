@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainFile from './MainFile';
+import TodoContainer from './components/TodoContainer';
 import style from './App.module.css';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
           <h3>Completed</h3>
       </nav>
         <Routes>
-          <Route exact path="/" element={<MainFile/>} />
+          <Route exact path="/" element={<TodoContainer/>} />
           <Route exact path="/new" element={<h1>New Todo List</h1>} />
         </Routes>
       <footer>
