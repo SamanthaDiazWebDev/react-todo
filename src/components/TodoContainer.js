@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
+import PropTypes from 'prop-types';
 
 
-const TodoContainer = () => {
+const TodoContainer = ({tableName}) => {
     const [todoList, setTodoList] = useState();
     const [isLoading, setIsLoading] = useState(true);
   
     const fetchData = async () => {
-      const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+      const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}`;
       const options = {
         method: "GET",
         headers: {
@@ -36,15 +37,14 @@ const TodoContainer = () => {
       } catch (error) {
         console.log(error.message);
       }
-    };  
-  
+    };
   
     useEffect(() => {
-      fetchData();
+      fetchData(); // eslint-disable-next-line
     }, []);
   
     const addTodo = async (title) => {
-      const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+      const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}`;
       const newTitle = {
         fields: {
           Title: title,
@@ -80,7 +80,7 @@ const TodoContainer = () => {
     };
   
     const removeTodo = async(id) => {
-      const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
+      const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}/${id}`;
       const options = {
         method: "DELETE",
         headers: {
@@ -103,7 +103,7 @@ const TodoContainer = () => {
   
     return (
       <>
-        <h1>To Do List</h1>
+         <h1>To Do List</h1> 
   
         <AddTodoForm onAddTodo={addTodo} />
         {isLoading ? (
@@ -114,5 +114,11 @@ const TodoContainer = () => {
       </>
     );
 }
+
+TodoContainer.propTypes = {
+  onAddTodo: PropTypes.func,
+  todoList: PropTypes.array,
+  onRemoveTodo: PropTypes.func,
+};
   
 export default TodoContainer;
