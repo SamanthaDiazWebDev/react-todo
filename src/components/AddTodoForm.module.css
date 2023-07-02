@@ -7,10 +7,10 @@
 }
 
 .button {
-    background: rgb(234, 231, 231); 
-    color: #000007;
-    border: 1px solid #030000; 
-    padding: 2px;
+    background: rgb(32, 4, 110);
+    color: #fcfcfc;
+    border: 1px solid #f1f1f1; 
+    padding: 3px;
     cursor: pointer;
     font-size: 18px;
       

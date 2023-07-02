@@ -4,11 +4,18 @@ import TodoList from './TodoList';
 import PropTypes from 'prop-types';
 
 
-const TodoContainer = ({tableName}) => {
+const TodoContainer = ({ tableName }) => {
     const [todoList, setTodoList] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [sortDirection, setSortDirection] = useState('asc');
+
+    const toggleSortDirection = () => {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    };
   
     const fetchData = async () => {
+      const view = "Grid%20view";
+      const queryParam = `view=${view}&sort[0][field]=Title&sort[0][direction]=${sortDirection}`;
       const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}`;
       const options = {
         method: "GET",
@@ -16,9 +23,11 @@ const TodoContainer = ({tableName}) => {
           Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
         },
       };
+
+      const urlWithQueryParam = `${url}?${queryParam}`;
       
       try {
-        const response = await fetch(url, options);
+        const response = await fetch(urlWithQueryParam, options);
   
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
@@ -27,9 +36,23 @@ const TodoContainer = ({tableName}) => {
         const todos = data.records.map((todo) => {
           return {
             id: todo.id,
-            title: todo.fields.Title
+            /*title: todo.fields.Title*/
+            title: todo.fields.Title,
+            Priority: todo.fields.Priority,
           };
         });
+
+        /*Sorting using JavaScript Version*/
+           /*function sortTodoList(objectA, objectB) {
+             if (objectA.title < objectB.title) {
+               return -1;
+            }
+            if (objectA.title > objectB.title) {
+              return 1;
+            }
+            return 0;
+          };
+            setTodoList(todos.sort(sortTodoList));*/
   
         setTodoList(todos);
         setIsLoading(false);
@@ -41,7 +64,7 @@ const TodoContainer = ({tableName}) => {
   
     useEffect(() => {
       fetchData(); // eslint-disable-next-line
-    }, []);
+    }, [sortDirection]);
   
     const addTodo = async (title) => {
       const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${tableName}`;
@@ -103,7 +126,10 @@ const TodoContainer = ({tableName}) => {
   
     return (
       <>
-         <h1>To Do List</h1> 
+         <h1> {tableName} </h1> 
+         <button onClick={toggleSortDirection}>
+                Toggle Sort Direction: {sortDirection === 'asc' ? 'Ascending' : 'Descending'}
+          </button>
   
         <AddTodoForm onAddTodo={addTodo} />
         {isLoading ? (
