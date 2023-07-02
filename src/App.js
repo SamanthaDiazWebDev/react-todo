@@ -3,6 +3,7 @@ import TodoContainer from './components/TodoContainer';
 import style from './App.module.css';
 
 function App() {
+  const tableName = process.env.REACT_APP_TABLE_NAME;
   return (
     <BrowserRouter>
       <nav className={style.navbarContainer}>
@@ -13,7 +14,7 @@ function App() {
           <h3>Completed</h3>
       </nav>
         <Routes>
-          <Route exact path="/" element={<TodoContainer/>} />
+          <Route exact path="/" element={<TodoContainer tableName={tableName}/>} />
           <Route exact path="/new" element={<h1>New Todo List</h1>} />
         </Routes>
       <footer>
