@@ -6,11 +6,10 @@ const TodoListItem = ({todo, onRemoveTodo }) => {
     return (
         <>
             <li className={style.ListItem}>
-             {todo.title}
-             &nbsp;&nbsp;
+                <span>{todo.title}</span>
+                <span>{todo.Priority}</span>
 
-             
-             <button onClick={ ()=> onRemoveTodo(todo.id) }>Remove</button> 
+                <button onClick={ ()=> onRemoveTodo(todo.id) }>Remove</button> 
             </li>
         </>
     );
@@ -18,7 +17,7 @@ const TodoListItem = ({todo, onRemoveTodo }) => {
 }
 
 TodoListItem.propTypes = {
-    todo: PropTypes.object,
+    todo: PropTypes.array,
     onRemoveTodo: PropTypes.func,
 }
 

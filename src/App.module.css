@@ -35,9 +35,9 @@ input {
 }
 
 button {
-    background: rgb(234, 231, 231); 
-    color: #000007;
-    border: 1px solid #030000; 
+    background: rgb(32, 4, 110); 
+    color: #fcfcfc;
+    border: 1px solid #f1f1f1; 
     padding: 5px;
     cursor: pointer;
       
