@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
+import AddTodoForm from './AddTodoForm';
+import { ReactComponent as Sort } from '../img/sortButton.svg';
 import PropTypes from 'prop-types';
+import style from './TodoContainer.module.css';
 
 
 const TodoContainer = ({ tableName }) => {
-    const [todoList, setTodoList] = useState();
+    const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortDirection, setSortDirection] = useState('asc');
 
@@ -33,26 +35,15 @@ const TodoContainer = ({ tableName }) => {
           throw new Error(`Error: ${response.status}`);
         }
         const data = await response.json();
+        console.log(data);
         const todos = data.records.map((todo) => {
           return {
             id: todo.id,
-            /*title: todo.fields.Title*/
             title: todo.fields.Title,
-            Priority: todo.fields.Priority,
+            /*DueDate: todo.fields.DueDate,*/
+            DueDate: todo.createdTime,
           };
         });
-
-        /*Sorting using JavaScript Version*/
-           /*function sortTodoList(objectA, objectB) {
-             if (objectA.title < objectB.title) {
-               return -1;
-            }
-            if (objectA.title > objectB.title) {
-              return 1;
-            }
-            return 0;
-          };
-            setTodoList(todos.sort(sortTodoList));*/
   
         setTodoList(todos);
         setIsLoading(false);
@@ -91,7 +82,9 @@ const TodoContainer = ({ tableName }) => {
         const todo = await response.json();
         const newTodo = {
             id: todo.id,
-            title: todo.fields.Title
+            title: todo.fields.Title,
+            /*DueDate: todo.fields.DueDate,*/
+            DueDate: todo.createdTime,
           }; 
   
         console.log(newTodo);
@@ -127,9 +120,9 @@ const TodoContainer = ({ tableName }) => {
     return (
       <>
          <h1> {tableName} </h1> 
-         <button onClick={toggleSortDirection}>
-                Toggle Sort Direction: {sortDirection === 'asc' ? 'Ascending' : 'Descending'}
-          </button>
+         <button className={style.sortButton} onClick={toggleSortDirection}>
+          <center>Sort by A to Z</center><Sort height="35px" width="35px"/>
+         </button>
   
         <AddTodoForm onAddTodo={addTodo} />
         {isLoading ? (

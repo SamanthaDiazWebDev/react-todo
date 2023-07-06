@@ -4,20 +4,40 @@
     background-size: cover;
     background-position: center;
     margin: auto;
+    justify-content: space-evenly;
 }
 
 .button {
-    background: rgb(32, 4, 110);
-    color: #fcfcfc;
-    border: 1px solid #f1f1f1; 
+    background: rgb(238, 237, 241);
+    /*color: #fcfcfc;
+    border: 1px solid #f1f1f1; */
     padding: 3px;
     cursor: pointer;
     font-size: 18px;
-      
     transition: all 0.1s ease-in;
 }
 
 button:hover { 
     background: #171212; 
     color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .button {
+        align-self: auto;
+    }
+
+
+    .addToDoForm label {
+        margin-right: 10px;
+        text-align: left;
+        font-size: 1rem;
+    } 
+
+    .addToDoForm input {
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 10px;
+    } 
+
 }

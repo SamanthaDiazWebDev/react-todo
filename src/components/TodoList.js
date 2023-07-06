@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 function TodoList({todoList, onRemoveTodo }) {
   return (
     <div className={style.container}>
-      <ul>
+      <ul className={style.list}>
         {todoList.map((item) => {
           return (
             <TodoListItem 

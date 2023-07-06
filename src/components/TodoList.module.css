@@ -6,9 +6,24 @@
     margin: auto;
 }
 
-@media all and (max-width: 500px) {
-    .container {
-        height: 34rem;
-        width: 30rem;
+@media all and (max-width: 900px) {
+    .list {
+      margin-top: 0.5px;
     }
-}
+  }
+  
+  @media all and (max-width: 500px) {
+    .list {
+      height: 30rem;
+    }
+    .container {
+      height: 30rem;
+      width: 27rem;
+    }
+  }
+  
+  @media all and (max-width: 420px) {
+    .list {
+      height: 22rem;
+    }
+  } 

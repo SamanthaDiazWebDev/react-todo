@@ -1,6 +1,7 @@
 import React, { useState } from 'react'; 
 import InputWithLabel from './InputWithLabel';
 import style from "./AddTodoForm.module.css";
+import { ReactComponent as Add } from '../img/addButton.svg';
 import PropTypes from  "prop-types";
 
 const AddTodoForm = ({ onAddTodo }) => {
@@ -32,7 +33,7 @@ const AddTodoForm = ({ onAddTodo }) => {
 
             <strong>Next Task:</strong>
             </InputWithLabel>
-            <button className={style.button} type="submit"> &nbsp; Add &nbsp; </button>
+            <button className={style.button} type="submit"> <Add height="19px" width="19px"/> </button>
             </form>
         </div>
         
